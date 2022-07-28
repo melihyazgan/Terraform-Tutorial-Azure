@@ -24,8 +24,4 @@ jobs:
         run: terraform init
       
       - name: Terraform Apply
-<<<<<<< HEAD
-        run: terraform apply
-=======
-        uses: terraform apply -auto-approve
->>>>>>> c89af2368a98e4a0d04e7af4b92cfba053aff6a0
+        run: terraform apply -auto-approve
