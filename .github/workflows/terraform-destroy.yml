@@ -15,6 +15,9 @@ jobs:
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
+      
+      - name: Terraform init
+        run: terraform init
 
       - name: Destroy Azure environment
         if: success()
