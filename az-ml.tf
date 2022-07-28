@@ -26,5 +26,5 @@ resource "azurerm_key_vault" "meya_terraform" {
   resource_group_name         = azurerm_resource_group.meya_terraform.name
   enabled_for_disk_encryption = true
   tenant_id                   = var.ARM_TENANT_ID
-  sku_name = "standard"
+  sku_name                    = "standard"
 }

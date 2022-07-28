@@ -4,16 +4,7 @@ on:
   pull_request:
     types: [labeled]
 jobs:
-  terraform:
-    runs-on: ubuntu-latest
-
-    env:
-      ARM_CLIENT_ID: ${{secrets.ARM_CLIENT_ID}}
-      ARM_CLIENT_SECRET: ${{secrets.ARM_CLIENT_SECRET}}
-      ARM_SUBSCRIPTION_ID: ${{secrets.ARM_SUBSCRIPTION_ID}}
-      ARM_TENANT_ID: ${{secrets.ARM_TENANT_ID}}
-  
-  destroy-azure-resources:
+  terraform destroy-azure-resources:
     runs-on: ubuntu-latest
 
     if: contains(github.event.pull_request.labels.*.name, 'destroy')
