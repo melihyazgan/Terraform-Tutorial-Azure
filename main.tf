@@ -23,7 +23,7 @@ resource "azurerm_resource_group" "meya_terraform" {
   location = var.location
 
   tags = {
-    owner = "yam1lz"
+    owner       = "yam1lz"
     Environment = "Terrafrom Getting Started"
   }
 }
