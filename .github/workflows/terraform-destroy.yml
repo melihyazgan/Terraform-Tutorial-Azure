@@ -1,8 +1,8 @@
-  name: Terraform Apply
+name: Terraform destroy
 
 on:
-  push:
-    branches: [ "az-ml-tf" ]
+  pull_request:
+    types: [labeled]
 jobs:
   terraform:
     runs-on: ubuntu-latest
