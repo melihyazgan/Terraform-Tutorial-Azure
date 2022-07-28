@@ -2,8 +2,7 @@ name: Terraform Apply
 
 on:
   push:
-    branches:
-      - az-ml-tf
+    branches: [ "az-ml-tf" ]
 jobs:
   terraform:
     runs on: ubuntu-latest
