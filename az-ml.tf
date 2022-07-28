@@ -4,7 +4,7 @@
 # - Azure Key Vault
 
 resource "azurerm_storage_account" "meya_terraform" {
-  name                     = "az_ml_tf_stgeaccount"
+  name                     = "meyastgeaccount"
   resource_group_name      = azurerm_resource_group.meya_terraform.name
   location                 = azurerm_resource_group.meya_terraform.location
   account_tier             = "Standard"
@@ -15,13 +15,13 @@ resource "azurerm_storage_account" "meya_terraform" {
   }
 }
 resource "azurerm_application_insights" "meya_terraform" {
-  name                = "az_ml_tf_appinsights"
+  name                = "meyaappinsights"
   location            = azurerm_resource_group.meya_terraform.location
   resource_group_name = azurerm_resource_group.meya_terraform.name
   application_type    = "web"
 }
 resource "azurerm_key_vault" "meya_terraform" {
-  name                        = "az_ml_tf_keyvault"
+  name                        = "meyakeyvault"
   location                    = azurerm_resource_group.meya_terraform.location
   resource_group_name         = azurerm_resource_group.meya_terraform.name
   enabled_for_disk_encryption = true
