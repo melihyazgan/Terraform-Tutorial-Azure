@@ -9,7 +9,7 @@ jobs:
   destroyazureresources:
     runs-on: ubuntu-latest
 
-    if: contains(github.event.pull_request.labels.*.name, 'destroy')
+    #if: contains(github.event.pull_request.labels.*.name, 'destroy')
 
     steps:
       - name: Checkout repository
