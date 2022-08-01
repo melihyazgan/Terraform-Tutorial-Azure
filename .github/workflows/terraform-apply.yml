@@ -6,9 +6,6 @@ on:
     #types: [labeled]
 jobs:
   terraform-apply:
-    defaults:
-      run:
-        working-directory: terraform
     runs-on: ubuntu-latest
     env:
       ARM_CLIENT_ID: ${{secrets.ARM_CLIENT_ID}}
@@ -41,9 +38,6 @@ jobs:
     steps:
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
-        with:
-          name: terraform
-          path: 'terraform'
 
       - name: Destroy Azure environment
         if: success()
