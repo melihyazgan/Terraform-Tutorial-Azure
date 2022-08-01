@@ -16,7 +16,7 @@ variable "ARM_CLIENT_ID" {
 
 variable "ARM_CLIENT_SECRET" {
   type    = string
-  default = "wEn8Q~FsybsJ2~FLJB6-Bk6B0jm95sI5yfVz7bUQ"
+  default = "zwm8Q~YwOCw0csna5PUBf20zhR7LEeRRwLKWIauw"
 }
 
 variable "ARM_SUBSCRIPTION_ID" {
@@ -29,3 +29,8 @@ variable "ARM_TENANT_ID" {
   default = "0ae51e19-07c8-4e4b-bb6d-648ee58410f4"
 }
 
+variable "ML_Service" {
+  type = string
+  default = "No"
+  description = "No: Don't Create ML Service Resource"
+}
