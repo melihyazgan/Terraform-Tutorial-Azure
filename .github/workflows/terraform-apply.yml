@@ -3,6 +3,7 @@ name: Terraform Apply
 on:
   push:
     branches: [ "main" ]
+    #types: [labeled]
 jobs:
   terraform:
     runs-on: ubuntu-latest
@@ -25,4 +26,22 @@ jobs:
       
       - name: Terraform Apply
         run: terraform apply -auto-approve
-  
+
+  destroyazureresources:
+    runs-on: ubuntu-latest
+
+    #if: contains(github.event.pull_request.labels.*.name, 'destroy')
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+      
+      - name: Terraform init
+        run: terraform init
+
+      - name: Destroy Azure environment
+        if: success()
+        run: terraform destroy
