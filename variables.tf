@@ -34,3 +34,7 @@ variable "ML_Service" {
   default = "No"
   description = "No: Don't Create ML Service Resource"
 }
+
+output "resource_group_id" {
+  value = azurerm_resource_group.meya_terraform.id
+}
