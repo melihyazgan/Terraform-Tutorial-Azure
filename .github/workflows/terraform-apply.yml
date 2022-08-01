@@ -46,4 +46,4 @@ jobs:
         
       - name: Destroy Azure environment
         if: success()
-        run: terraform destroy -target azurerm_resource_group.${{var.rsgname}}
+        run: terraform destroy
