@@ -5,9 +5,11 @@ on:
     branches: [ "test_apply-destroy" ]
     #types: [labeled]
 jobs:
-  terraform:
+  terraform-apply:
+    defaults:
+      run:
+        working-directory: terraform
     runs-on: ubuntu-latest
-
     env:
       ARM_CLIENT_ID: ${{secrets.ARM_CLIENT_ID}}
       ARM_CLIENT_SECRET: ${{secrets.ARM_CLIENT_SECRET}}
@@ -17,6 +19,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Download artifacts from previous job
+        uses: actions/download-artifact@v2
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
@@ -28,19 +33,17 @@ jobs:
         run: terraform apply -auto-approve
 
   destroyazureresources:
+    needs: terraform-apply
     runs-on: ubuntu-latest
 
     #if: contains(github.event.pull_request.labels.*.name, 'destroy')
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v2
-      
-      - name: Terraform init
-        run: terraform init
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: terraform
+          path: 'terraform'
 
       - name: Destroy Azure environment
         if: success()
