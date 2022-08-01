@@ -2,7 +2,7 @@ name: Terraform Apply
 
 on:
   push:
-    branches: [ "az-ml-tf" ]
+    branches: [ "main" ]
 jobs:
   terraform:
     runs-on: ubuntu-latest
@@ -25,3 +25,4 @@ jobs:
       
       - name: Terraform Apply
         run: terraform apply -auto-approve
+  
