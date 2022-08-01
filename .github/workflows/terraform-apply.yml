@@ -30,4 +30,4 @@ jobs:
         
       - name: Destroy Azure environment
         if: success()
-        run: terraform destroy
+        run: terraform destroy -auto-approve
