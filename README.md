@@ -1,5 +1,6 @@
 # Terraform Tutorial Azure
 Here will be terraform file created to provision Azure infrastructure (services) using Terraform where CICD task is performed using Github Actions.
-- main.tf is the Resource group for all types services
-- Sign in your Azure Account and find tenant_id, client_secret, subsciption_id. Write those in variables.tf
-- Azure ML- Services(az-ml.tf). Change variable ML_Service to "Yes".
+- [main.tf](https://github.com/melihyazgan/Terraform-Tutorial-Azure/blob/main/main.tf) is the Resource group for all types services
+- Sign in your Azure Account and find tenant_id, client_secret, subsciption_id. Write those in [variables.tf](https://github.com/melihyazgan/Terraform-Tutorial-Azure/blob/main/variables.tf)
+- Azure ML- Services are located in [az-ml.tf](https://github.com/melihyazgan/Terraform-Tutorial-Azure/blob/main/az-ml.tf). Change variable ML_Service in [variables.tf](https://github.com/melihyazgan/Terraform-Tutorial-Azure/blob/main/variables.tf) to "Yes".
+- Azure resources and an Azure VM in [az-vm.tf](https://github.com/melihyazgan/Terraform-Tutorial-Azure/blob/main/az-vm.tf)  that you can SSH into to have your own redeployable environment.Change variable VM_Service in [variables.tf](https://github.com/melihyazgan/Terraform-Tutorial-Azure/blob/main/variables.tf) to "Yes". Uncomment lines between 92-95 in [az-vm.tf](https://github.com/melihyazgan/Terraform-Tutorial-Azure/blob/main/az-vm.tf) and user your own ssh key. If you want to deploy anything else in remote host you can extend in [customdata.tpl](https://github.com/melihyazgan/Terraform-Tutorial-Azure/blob/main/customdata.tpl)
