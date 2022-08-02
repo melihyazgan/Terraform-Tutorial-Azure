@@ -9,6 +9,18 @@ variable "rsgname" {
   default     = "Terraformrsg_meya"
 }
 
+variable "ML_Service" {
+  type        = string
+  default     = "No"
+  description = "No: Don't Create ML Service Resources"
+}
+
+variable "VM_Service" {
+  type        = string
+  default     = "No"
+  description = "No: Don't Create VM Service Resources"
+}
+
 variable "ARM_CLIENT_ID" {
   type    = string
   default = "e0a0b9a6-7559-48a1-b1cc-e7567b84f02e"
@@ -28,13 +40,6 @@ variable "ARM_TENANT_ID" {
   type    = string
   default = "0ae51e19-07c8-4e4b-bb6d-648ee58410f4"
 }
-
-variable "ML_Service" {
-  type = string
-  default = "No"
-  description = "No: Don't Create ML Service Resource"
-}
-
 output "resource_group_id" {
   value = azurerm_resource_group.meya_terraform.id
 }
