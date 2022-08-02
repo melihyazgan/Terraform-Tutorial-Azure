@@ -1,4 +1,5 @@
 resource "azurerm_virtual_network" "meya_terraform" {
+  count = var.VM_Service == "No" ? 0 : 1
   name                = "meya-network"
   resource_group_name = azurerm_resource_group.meya_terraform.name
   location            = azurerm_resource_group.meya_terraform.location
@@ -9,6 +10,7 @@ resource "azurerm_virtual_network" "meya_terraform" {
   }
 }
 resource "azurerm_subnet" "meya_terraform" {
+    count = var.VM_Service == "No" ? 0 : 1
   name                 = "meya-subnet"
   resource_group_name  = azurerm_resource_group.meya_terraform.name
   virtual_network_name = azurerm_virtual_network.meya_terraform.name
@@ -16,6 +18,7 @@ resource "azurerm_subnet" "meya_terraform" {
 }
 
 resource "azurerm_network_security_group" "meya_terraform" {
+    count = var.VM_Service == "No" ? 0 : 1
   name                = "meya-sg"
   location            = azurerm_resource_group.meya_terraform.location
   resource_group_name = azurerm_resource_group.meya_terraform.name
@@ -26,6 +29,7 @@ resource "azurerm_network_security_group" "meya_terraform" {
 }
 
 resource "azurerm_network_security_rule" "meya_terraform" {
+    count = var.VM_Service == "No" ? 0 : 1
   name                        = "meya-dev-rule"
   priority                    = 100
   direction                   = "Inbound"
@@ -40,11 +44,13 @@ resource "azurerm_network_security_rule" "meya_terraform" {
 }
 
 resource "azurerm_subnet_network_security_group_association" "meya_terraform" {
+    count = var.VM_Service == "No" ? 0 : 1
   subnet_id                 = azurerm_subnet.meya_terraform.id
   network_security_group_id = azurerm_network_security_group.meya_terraform.id
 }
 
 resource "azurerm_public_ip" "meya_terraform" {
+    count = var.VM_Service == "No" ? 0 : 1
   name                = "meya-ip"
   resource_group_name = azurerm_resource_group.meya_terraform.name
   location            = azurerm_resource_group.meya_terraform.location
@@ -56,6 +62,7 @@ resource "azurerm_public_ip" "meya_terraform" {
 }
 
 resource "azurerm_network_interface" "meya_terraform" {
+    count = var.VM_Service == "No" ? 0 : 1
   name                = "meya-nic"
   location            = azurerm_network_security_group.meya_terraform.location
   resource_group_name = azurerm_resource_group.meya_terraform.name
@@ -72,6 +79,7 @@ resource "azurerm_network_interface" "meya_terraform" {
 }
 
 resource "azurerm_linux_virtual_machine" "meya_terraform" {
+    count = var.VM_Service == "No" ? 0 : 1
   name                  = "meya-vm"
   resource_group_name   = azurerm_resource_group.meya_terraform.name
   location              = azurerm_resource_group.meya_terraform.location
@@ -99,7 +107,7 @@ resource "azurerm_linux_virtual_machine" "meya_terraform" {
   }
   provisioner "local-exec" {
     command = templatefile("windows-ssh-script.tpl", { hostname = self.public_ip_address,
-      user = "adminuser",
+    user = "adminuser",
     identityfile = "~/.ssh/meyaazurekey" })
     interpreter = ["Powershell", "Command"]
   }
