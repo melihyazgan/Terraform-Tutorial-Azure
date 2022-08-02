@@ -21,6 +21,7 @@ variable "VM_Service" {
   description = "No: Don't Create VM Service Resources"
 }
 
+
 variable "ARM_CLIENT_ID" {
   type    = string
   default = "e0a0b9a6-7559-48a1-b1cc-e7567b84f02e"
